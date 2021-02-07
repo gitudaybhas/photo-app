@@ -2,84 +2,88 @@
 import './App.css';
 import data from './data';
 import React, { Component } from 'react';
-import User from './components/User';
-import Photocom from './components/PhotoCom.js';
-import PhotoCom from './components/PhotoCom.js';
 
-class App extends Component{
+import Album from './components/Album';
+
+class App extends Component {
+
+
 
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
+
+      data: data,
+
       
-      album1:false,
-      album2:false,
-      album3:false,
-      
+      album: false,
+
     }
   }
 
-  changeState1 = () => {   
+  changeState1 = (e) => {
     this.setState(
       {
-        
-        album1:true,
-        album2:false,
-        album3:false,
 
-    });  
-       }; 
+       album:true
 
-       changeState2 = () => {   
-        this.setState(
-          {
-           
-            album2:true,
-            album1:false,
-            album3:false,
-    
-        });  
-           }; 
+      });
 
-           changeState3 = () => {   
-            this.setState(
-              {
-                
-                album3:true,
-                album1:false,
-                album2:false,
-        
-            });  
-               }; 
+   
+
+      
+
+
+  };
+
+ 
+
+  
 
 
   render() {
+
+    function changeStat(e){
+
+      
+
+    }
+
+    const userStr = this.state.data;
+
+    console.log(userStr);
+
+
+    const items = [];
+
+    for (const [index, value] of userStr.entries()) {
+      items.push(
+        <div>
+          <div key={index} al={Object.entries(value.album).map(([k, v]) => {
+        return (
+            
+                 v.name.toString()
+           
+        );
+    })} onClick={this.changeState1} id={value.name} className="padding-top-bottom">{value.name}</div>
+
     
-  return (      
-            <div >   
-                    
-                <div>   
-                    <button  onClick={this.changeState1} type="button">  
-                      user1  
-                    </button>     
-                </div> 
-                {this.state.album1 && <PhotoCom album1={this.state.album1} />}
+    <div>
+          {this.state.album && <Album show={value.album} cls={value.name}></Album>}
 
-                <div>   
-                    <button  onClick={this.changeState2} type="button">  
-                      user2  
-                    </button>     
-                </div> 
-                {this.state.album2 && <PhotoCom album2={this.state.album2} />}
+          </div>
+        </div>
+      )
+    }
 
-                <div>   
-                    <button  onClick={this.changeState3} type="button">  
-                      user3  
-                    </button>     
-                </div> 
-                {this.state.album3 && <PhotoCom album2={this.state.album3} />}
-            </div>    
-        );          
-}
+    return (
+      <div className="align-center">
+
+        {items}
+
+
+      </div>
+    );
+  }
 }
 export default App;

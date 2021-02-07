@@ -1,0 +1,12 @@
+.align-center{
+    text-align: center;
+}
+
+.padding-top-bottom{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.bold-text{
+    font-size: x-large;
+}
